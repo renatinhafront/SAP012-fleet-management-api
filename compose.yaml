@@ -15,7 +15,6 @@ services:
       - ./database/trajectories/9275.sql:/docker-entrypoint-initdb.d/9275.sql
       - ./database/trajectories/10133.sql:/docker-entrypoint-initdb.d/10133.sql
     ports: [ "5432:5432" ]
-    shm_size: 128mb
     environment:
       POSTGRES_PASSWORD: postgres
 
