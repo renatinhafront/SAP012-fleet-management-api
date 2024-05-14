@@ -1106,6 +1106,11 @@ INSERT INTO trajectories (taxi_id, date, latitude, longitude ) VALUES (7088,'200
 
 
 
+
+
+
+
+
 INSERT INTO trajectories (taxi_id, date, latitude, longitude ) VALUES (7957,'2008-02-02 13:47:48',116.28709,39.95843);
 INSERT INTO trajectories (taxi_id, date, latitude, longitude ) VALUES (7957,'2008-02-02 13:50:56',116.2799,39.96033);
 INSERT INTO trajectories (taxi_id, date, latitude, longitude ) VALUES (7957,'2008-02-02 13:55:57',116.29383,39.95809);
