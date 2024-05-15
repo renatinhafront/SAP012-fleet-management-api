@@ -2,6 +2,10 @@ package com.renatinha.fleetmanagement.controller;
 
 import com.renatinha.fleetmanagement.model.Taxi;
 import com.renatinha.fleetmanagement.service.TaxiService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +26,10 @@ public class TaxiController {
         this.taxiService = taxiService;
     }
 
-    //Busca para mapear a paginação
+    @Operation(summary = "Get a taxi list", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "400", description = "Parametros inválidos", content = @Content),
+    })
     @GetMapping
     public Page<Taxi> getAllTaxis(@RequestParam int pageNumber, @RequestParam int pageSize) {
         PageRequest request = PageRequest.of(pageNumber, pageSize);
