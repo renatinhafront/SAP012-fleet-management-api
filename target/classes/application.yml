@@ -5,3 +5,8 @@ spring:
         password: postgres
     application:
         name: fleet-management
+springdoc:
+    api-docs:
+        path: "api-docs"
+#    swagger-ui:
+#        path: "/docs.html"
