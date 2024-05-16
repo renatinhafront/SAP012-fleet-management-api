@@ -9,13 +9,13 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
 
 
 @RestController
@@ -31,7 +31,8 @@ public class TaxiController {
         this.taxiService = taxiService;
     }
 
-    @Operation(summary = "Get a taxi list", method = "GET")
+
+    @Operation(summary = "Busca uma lista com todos os taxis", method = "GET")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -52,15 +53,15 @@ public class TaxiController {
     })
 
     @GetMapping
-    public ResponseEntity<Object> getAllTaxis(@RequestParam int pageNumber, @RequestParam int pageSize) {
-        PageRequest request = PageRequest.of(pageNumber, pageSize);
+    public ResponseEntity<PageResponse> getAllTaxis(@ParameterObject Pageable pageable) {
 
         //declarando uma váriavel
-        Page<Taxi> pages = taxiService.getAllTaxis(request);
+        Page<Taxi> pages = taxiService.getAllTaxis(pageable);
+        // dto para mapear os campos
         return ResponseEntity.ok(PageResponse.builder()
                 .totalElements(pages.getTotalElements())
                 .totalPages(pages.getTotalPages())
-                .content(pages.getContent())
+                .content(Collections.singletonList(pages.getContent()))
                 //construa este objeto
                 .build()
         );
