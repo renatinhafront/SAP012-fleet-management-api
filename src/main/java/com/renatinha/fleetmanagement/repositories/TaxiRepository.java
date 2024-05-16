@@ -1,12 +1,9 @@
-package com.renatinha.fleetmanagement.repository;
+package com.renatinha.fleetmanagement.repositories;
 
 
-import com.renatinha.fleetmanagement.model.Taxi;
+import com.renatinha.fleetmanagement.entities.Taxi;
 import org.springframework.data.repository.PagingAndSortingRepository;
-
-import java.util.List;
 
 // spring data PagingAndSortingRepository = fornece métodos para fazer paginação e classificação de registros
 public interface TaxiRepository extends PagingAndSortingRepository<Taxi, Long> {
-    List<Taxi> findAll();
 }
