@@ -1,0 +1,68 @@
+package com.renatinha.fleetmanagement.controllers;
+
+import com.renatinha.fleetmanagement.entities.Error;
+import com.renatinha.fleetmanagement.entities.Taxi;
+import com.renatinha.fleetmanagement.responses.PageResponse;
+import com.renatinha.fleetmanagement.services.TaxiService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@RequestMapping("/taxis")
+public class TaxiController {
+
+    //criando um atributo e/ou instanciando a classe service
+    private final TaxiService taxiService;
+
+
+    //construtor
+    public TaxiController(TaxiService taxiService) {
+        this.taxiService = taxiService;
+    }
+
+    @Operation(summary = "Get a taxi list", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Operação com sucesso",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = PageResponse.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Parametros inválidos",
+                    content = @Content(
+                        mediaType = "application/json",
+                        schema = @Schema(implementation = Error.class)
+                    )
+            ),
+    })
+
+    @GetMapping
+    public ResponseEntity<Object> getAllTaxis(@RequestParam int pageNumber, @RequestParam int pageSize) {
+        PageRequest request = PageRequest.of(pageNumber, pageSize);
+
+        //declarando uma váriavel
+        Page<Taxi> pages = taxiService.getAllTaxis(request);
+        return ResponseEntity.ok(PageResponse.builder()
+                .totalElements(pages.getTotalElements())
+                .totalPages(pages.getTotalPages())
+                .content(pages.getContent())
+                //construa este objeto
+                .build()
+        );
+    }
+}
