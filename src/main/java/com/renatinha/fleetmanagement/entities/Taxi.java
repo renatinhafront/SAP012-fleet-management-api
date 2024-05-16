@@ -1,4 +1,4 @@
-package com.renatinha.fleetmanagement.model;
+package com.renatinha.fleetmanagement.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,7 +12,4 @@ public class Taxi {
     private int id;
     private String plate;
 
-
-    public Taxi() {
-    }
 }
