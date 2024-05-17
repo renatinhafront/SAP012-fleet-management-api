@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 public class Trajectory {
 
     @Id
-    private int id;
-    private int taxi_id;
+    private Integer id;
+    private Integer taxiId;
     private LocalDateTime date;
     private BigDecimal latitude;
     private BigDecimal longitude;
