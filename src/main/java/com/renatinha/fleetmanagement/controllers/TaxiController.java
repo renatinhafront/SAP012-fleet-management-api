@@ -1,6 +1,7 @@
 package com.renatinha.fleetmanagement.controllers;
 
 import com.renatinha.fleetmanagement.entities.Error;
+import com.renatinha.fleetmanagement.entities.LastTrajectory;
 import com.renatinha.fleetmanagement.entities.Taxi;
 import com.renatinha.fleetmanagement.entities.Trajectory;
 import com.renatinha.fleetmanagement.responses.*;
@@ -167,46 +168,13 @@ public class TaxiController {
     public ResponseEntity<PageResponse> getAllTaxisLastTrajectory(@ParameterObject Pageable pageable) {
 
         //classe Page de paginação
-        Page<Taxi> pages = taxiService.getAllTaxis(pageable);
-
-        //retorna uma lista de taxi - .getcontent pegando o conteudo da classe page - .stream iterar a lista
-        List<TaxiLastTrajectoryResponse> taxiResponses = pages.getContent().stream()
-
-                //.map coleta taxi da lista de page e transforma em taxi response
-                //taxi objeto - .getXX() busca os itens da lista
-                .map(taxi -> {
-                    //devolve uma lista ordenada
-                    taxi.getTrajectories().sort((date1, date2) -> date2.getDate().compareTo(date1.getDate()));
-
-                    BigDecimal longitude = BigDecimal.ZERO;
-                    BigDecimal latitude = BigDecimal.ZERO;
-                    LocalDateTime dateTime = LocalDateTime.now();
-
-                    if (!taxi.getTrajectories().isEmpty()) {
-                        //pega a primeira tragetoria da lista ordenada des
-                        Trajectory trajectory = taxi.getTrajectories().getFirst();
-                        longitude = trajectory.getLongitude();
-                        latitude = trajectory.getLatitude();
-                        dateTime = LocalDateTime.now();
-
-                    }
-
-
-                    return TaxiLastTrajectoryResponse.builder()
-                            .id(taxi.getId())
-                            .plate(taxi.getPlate())
-                            .longitude(longitude)
-                            .latitude(latitude)
-                            .dateTime(dateTime)
-                            .build();
-                })
-                .toList();
+        Page<LastTrajectory> pages = taxiService.getAllLastTrajectory(pageable);
 
         // Construir a resposta com PageResponse genérico
         PageResponse response = PageResponse.builder()
                 .totalElements(pages.getTotalElements())
                 .totalPages(pages.getTotalPages())
-                .content(taxiResponses)
+                .content(pages.getContent())
                 .build();
 
         return ResponseEntity.ok(response);
