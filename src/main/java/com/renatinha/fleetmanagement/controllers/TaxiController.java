@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -68,9 +69,9 @@ public class TaxiController {
         Page<Taxi> pages = taxiService.getAllTaxis(pageable);
 
         List<TaxiResponse> taxiResponses = pages.getContent().stream()
-                .map(t -> TaxiResponse.builder()
-                        .id(t.getId())
-                        .plate(t.getPlate())
+                .map(taxi -> TaxiResponse.builder()
+                        .id(taxi.getId())
+                        .plate(taxi.getPlate())
                         .build())
                 .toList();
 
@@ -122,10 +123,10 @@ public class TaxiController {
         Page<Trajectory> pages = trajectoryService.getTrajectoriesByTaxiId(id, startDate, endDate, pageable);
 
         List<TrajectoryResponse> trajectoryResponses = pages.getContent().stream()
-                .map(t -> TrajectoryResponse.builder()
-                        .dateTime(t.getDate())
-                        .longitude(t.getLongitude())
-                        .latitude(t.getLatitude())
+                .map(taxi -> TrajectoryResponse.builder()
+                        .dateTime(taxi.getDate())
+                        .longitude(taxi.getLongitude())
+                        .latitude(taxi.getLatitude())
                         .build())
                 .toList();
 
@@ -137,5 +138,78 @@ public class TaxiController {
                 .build();
 
         return ResponseEntity.ok(response);
+    }
+
+    @Operation(
+            summary = "Busca a última localização reportada por cada táx",
+            method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Operação com sucesso",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = PageResponse.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Parametros inválidos",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Error.class)
+                    )
+            ),
+    })
+
+
+    @GetMapping("/trajectories/last")
+    public ResponseEntity<PageResponse> getAllTaxisLastTrajectory(@ParameterObject Pageable pageable) {
+
+        //classe Page de paginação
+        Page<Taxi> pages = taxiService.getAllTaxis(pageable);
+
+        //retorna uma lista de taxi - .getcontent pegando o conteudo da classe page - .stream iterar a lista
+        List<TaxiLastTrajectoryResponse> taxiResponses = pages.getContent().stream()
+
+                //.map coleta taxi da lista de page e transforma em taxi response
+                //taxi objeto - .getXX() busca os itens da lista
+                .map(taxi -> {
+                    //devolve uma lista ordenada
+                    taxi.getTrajectories().sort((date1, date2) -> date2.getDate().compareTo(date1.getDate()));
+
+                    BigDecimal longitude = BigDecimal.ZERO;
+                    BigDecimal latitude = BigDecimal.ZERO;
+                    LocalDateTime dateTime = LocalDateTime.now();
+
+                    if (!taxi.getTrajectories().isEmpty()) {
+                        //pega a primeira tragetoria da lista ordenada des
+                        Trajectory trajectory = taxi.getTrajectories().getFirst();
+                        longitude = trajectory.getLongitude();
+                        latitude = trajectory.getLatitude();
+                        dateTime = LocalDateTime.now();
+
+                    }
+
+
+                    return TaxiLastTrajectoryResponse.builder()
+                            .id(taxi.getId())
+                            .plate(taxi.getPlate())
+                            .longitude(longitude)
+                            .latitude(latitude)
+                            .dateTime(dateTime)
+                            .build();
+                })
+                .toList();
+
+        // Construir a resposta com PageResponse genérico
+        PageResponse response = PageResponse.builder()
+                .totalElements(pages.getTotalElements())
+                .totalPages(pages.getTotalPages())
+                .content(taxiResponses)
+                .build();
+
+        return ResponseEntity.ok(response);
+
     }
 }
