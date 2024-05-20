@@ -24,14 +24,4 @@ public class TrajectoryService {
                                                     Pageable pageable) {
         return trajectoryRepository.findAllByTaxiIdAndDateBetween(taxiId, startDate, endDate, pageable);
     }
-
-
-    // crio um novo response ? para buscsar todas as informações eu uso extends para agrupar as duas classes?
-
-    public Page<Trajectory> getLastTrajectories(Integer taxiId,
-                                                LocalDateTime startDate,
-                                                LocalDateTime endDate,
-                                                Pageable pageable) {
-        return trajectoryRepository.findAll(pageable);
-    }
 }
