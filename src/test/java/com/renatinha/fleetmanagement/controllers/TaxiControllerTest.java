@@ -1,7 +1,6 @@
-package com.renatinha.fleetmanagement;
+package com.renatinha.fleetmanagement.controllers;
 
 
-import com.renatinha.fleetmanagement.controllers.TaxiController;
 import com.renatinha.fleetmanagement.entities.LastTrajectory;
 import com.renatinha.fleetmanagement.entities.Taxi;
 import com.renatinha.fleetmanagement.entities.Trajectory;
