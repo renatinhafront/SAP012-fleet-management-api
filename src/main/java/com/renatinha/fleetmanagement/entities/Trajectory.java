@@ -16,8 +16,8 @@ public class Trajectory {
     @Id
     private Integer id;
     private LocalDateTime date;
-    private BigDecimal latitude;
-    private BigDecimal longitude;
+    private double latitude;
+    private double longitude;
 
     //join lado forte da tabela
     @ManyToOne
