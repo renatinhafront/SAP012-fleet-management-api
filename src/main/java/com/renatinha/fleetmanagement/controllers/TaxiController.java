@@ -20,9 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Tag(name = "Táxis")
@@ -128,7 +126,7 @@ public class TaxiController {
 
         List<TrajectoryResponse> trajectoryResponses = pages.getContent().stream()
                 .map(taxi -> TrajectoryResponse.builder()
-                        .dateTime(taxi.getDate())
+                        .date(taxi.getDate())
                         .longitude(taxi.getLongitude())
                         .latitude(taxi.getLatitude())
                         .build())

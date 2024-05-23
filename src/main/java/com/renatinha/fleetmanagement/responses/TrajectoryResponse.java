@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class TrajectoryResponse {
-    private LocalDateTime dateTime;
+    private LocalDateTime date;
     private double latitude;
     private double longitude;
 }

@@ -8,7 +8,7 @@ import lombok.Data;
 public class LastTrajectory {
 
     @Id
-    private Long taxiId;
+    private int taxiId;
     private String plate;
     private String date;
     private Double longitude;
