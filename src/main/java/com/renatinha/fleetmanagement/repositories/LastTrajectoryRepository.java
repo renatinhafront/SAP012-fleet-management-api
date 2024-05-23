@@ -6,7 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-
+// DISTINCT - comando retorna apenas valores distintos (diferentes)
+// FROM - especificar de qual tabela selecionar
+// INNER JOIN - permite a junção entre duas ou mais tabelas
+// ORDER BY - para classificar o conjunto de resultados em ordem crescente ou decrescente
 
 public interface LastTrajectoryRepository extends PagingAndSortingRepository<LastTrajectory, Long> {
 
