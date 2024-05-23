@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,8 +22,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
+@Tag(name = "Táxis")
 //é um controller onde cada método retorna um objeto de domínio diretamente para o corpo da resposta HTTP.
 @RestController
 //Define o caminho base para todos os métodos neste controller, que é /taxis
@@ -42,7 +45,7 @@ public class TaxiController {
 
 
     @Operation(
-            summary = "Busca uma lista com todos os taxis",
+            summary = "Busca uma lista com todos os táxis",
             method = "GET")
     @ApiResponses(value = {
             @ApiResponse(
@@ -142,7 +145,7 @@ public class TaxiController {
     }
 
     @Operation(
-            summary = "Busca a última localização reportada por cada táx",
+            summary = "Busca a última localização reportada por cada táxi",
             method = "GET")
     @ApiResponses(value = {
             @ApiResponse(
