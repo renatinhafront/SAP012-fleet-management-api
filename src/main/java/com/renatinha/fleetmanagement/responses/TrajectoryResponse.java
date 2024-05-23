@@ -10,6 +10,6 @@ import java.time.LocalDateTime;
 @Builder
 public class TrajectoryResponse {
     private LocalDateTime dateTime;
-    private BigDecimal latitude;
-    private BigDecimal longitude;
+    private double latitude;
+    private double longitude;
 }
