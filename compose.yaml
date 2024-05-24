@@ -1,9 +1,19 @@
 services:
   postgres:
-    image: 'postgres:latest'
+    image: postgres
+    volumes:
+      - ./database/create_tables.sql:/docker-entrypoint-initdb.d/001_create_tables.sql
+      - ./database/taxis/taxis.sql:/docker-entrypoint-initdb.d/002_taxis.sql
+      - ./database/trajectories/6418.sql:/docker-entrypoint-initdb.d/6418.sql
+      - ./database/trajectories/6598.sql:/docker-entrypoint-initdb.d/6598.sql
+      - ./database/trajectories/7088.sql:/docker-entrypoint-iinitdb.d/7088.sql
+      - ./database/trajectories/7249.sql:/docker-entrypoint-initdb.d/7249.sql
+      - ./database/trajectories/7956.sql:/docker-entrypoint-initdb.d/7956.sql
+      - ./database/trajectories/7957.sql:/docker-entrypoint-iinitdb.d/7957.sql
+      - ./database/trajectories/8825.sql:/docker-entrypoint-initdb.d/8825.sql
+      - ./database/trajectories/8935.sql:/docker-entrypoint-iinitdb.d/8935.sql
+      - ./database/trajectories/9275.sql:/docker-entrypoint-initdb.d/9275.sql
+      - ./database/trajectories/10133.sql:/docker-entrypoint-initdb.d/10133.sql
+    ports: [ "5432:5432" ]
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
-    ports:
-      - '5432'
+      POSTGRES_PASSWORD: postgres
