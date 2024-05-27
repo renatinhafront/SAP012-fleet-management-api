@@ -1,0 +1,15 @@
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/repositories/TrajectoryRepository.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/responses/TaxiLastTrajectoryResponse.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/entities/Trajectory.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/FleetManagementApplication.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/entities/Error.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/repositories/TaxiRepository.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/repositories/LastTrajectoryRepository.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/responses/TrajectoryResponse.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/responses/TaxiResponse.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/services/TrajectoryService.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/services/TaxiService.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/entities/Taxi.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/responses/PageResponse.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/controllers/TaxiController.java
+/Users/saraiva/lab/proj/SAP012-fleet-management-api/src/main/java/com/renatinha/fleetmanagement/entities/LastTrajectory.java
