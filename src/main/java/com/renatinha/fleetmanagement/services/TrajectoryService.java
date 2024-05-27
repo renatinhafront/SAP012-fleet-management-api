@@ -22,6 +22,7 @@ public class TrajectoryService {
                                                     LocalDateTime startDate,
                                                     LocalDateTime endDate,
                                                     Pageable pageable) {
+
         return trajectoryRepository.findAllByTaxiIdAndDateBetween(taxiId, startDate, endDate, pageable);
     }
 }

@@ -1,12 +1,10 @@
 spring:
     datasource:
-        url: jdbc:postgresql://localhost:5432/postgres
-        username: postgres
-        password: postgres
+        url: ${DATABASE_URL}
+        username: ${DATABASE_USERNAME}
+        password: ${DATABASE_PASSWORD}
     application:
         name: fleet-management
 springdoc:
     api-docs:
         path: "api-docs"
-#    swagger-ui:
-#        path: "/docs.html"
