@@ -28,3 +28,4 @@ replay_pid*
 /database/trajectories/7088.sql
 /fleet-management.iml
 /.idea/modules.xml
+/target/
