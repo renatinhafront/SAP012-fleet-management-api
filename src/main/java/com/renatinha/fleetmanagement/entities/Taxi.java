@@ -11,6 +11,7 @@ import java.util.List;
 @Entity(name = "taxis")
 public class Taxi {
 
+    //@is coluna de identificadores da tabela
     @Id
     private int id;
     private String plate;

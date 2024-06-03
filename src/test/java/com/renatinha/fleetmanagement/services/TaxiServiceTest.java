@@ -1,6 +1,6 @@
 package com.renatinha.fleetmanagement.services;
 
-import com.renatinha.fleetmanagement.entities.LastTrajectory;
+import com.renatinha.fleetmanagement.dto.LastTrajectory;
 import com.renatinha.fleetmanagement.entities.Taxi;
 import com.renatinha.fleetmanagement.repositories.LastTrajectoryRepository;
 import com.renatinha.fleetmanagement.repositories.TaxiRepository;
@@ -28,6 +28,7 @@ public class TaxiServiceTest {
     @Mock
     private TaxiRepository taxiRepository;
 
+    //mockito simular algo
     @Mock
     private LastTrajectoryRepository lastTrajectoryRepository;
 
@@ -41,6 +42,7 @@ public class TaxiServiceTest {
 
         Page<Taxi> pages = taxiService.getAllTaxis(Pageable.unpaged());
 
+        //assertions do junit para validar teste
         Assertions.assertEquals(pages.getTotalElements(), 1);
         Assertions.assertEquals(pages.getTotalPages(), 1);
         Assertions.assertEquals(pages.getContent().getFirst().getPlate(), "HLBO-2375");

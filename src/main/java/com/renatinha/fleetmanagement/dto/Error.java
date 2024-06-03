@@ -1,4 +1,4 @@
-package com.renatinha.fleetmanagement.entities;
+package com.renatinha.fleetmanagement.dto;
 
 import lombok.Getter;
 import lombok.Setter;

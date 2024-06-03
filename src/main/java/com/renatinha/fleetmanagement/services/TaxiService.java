@@ -1,6 +1,6 @@
 package com.renatinha.fleetmanagement.services;
 
-import com.renatinha.fleetmanagement.entities.LastTrajectory;
+import com.renatinha.fleetmanagement.dto.LastTrajectory;
 import com.renatinha.fleetmanagement.entities.Taxi;
 import com.renatinha.fleetmanagement.repositories.LastTrajectoryRepository;
 import com.renatinha.fleetmanagement.repositories.TaxiRepository;

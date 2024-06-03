@@ -3,6 +3,8 @@ package com.renatinha.fleetmanagement;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//regra de negocio fica sempre na service
+
 @SpringBootApplication
 public class FleetManagementApplication {
 

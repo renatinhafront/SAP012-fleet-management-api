@@ -1,4 +1,4 @@
-package com.renatinha.fleetmanagement.entities;
+package com.renatinha.fleetmanagement.dto;
 
 import jakarta.persistence.*;
 import lombok.Data;

@@ -8,6 +8,8 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+
+//data -encapsulamento- gera em tempo de execuçao os métodos get e set e outros
 @Data
 @Entity(name = "trajectories")
 public class Trajectory {

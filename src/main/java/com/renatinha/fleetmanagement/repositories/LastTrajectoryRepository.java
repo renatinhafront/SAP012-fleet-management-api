@@ -1,6 +1,6 @@
 package com.renatinha.fleetmanagement.repositories;
 
-import com.renatinha.fleetmanagement.entities.LastTrajectory;
+import com.renatinha.fleetmanagement.dto.LastTrajectory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

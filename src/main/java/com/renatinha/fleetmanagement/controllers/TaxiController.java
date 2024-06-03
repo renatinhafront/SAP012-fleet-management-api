@@ -1,7 +1,7 @@
 package com.renatinha.fleetmanagement.controllers;
 
-import com.renatinha.fleetmanagement.entities.Error;
-import com.renatinha.fleetmanagement.entities.LastTrajectory;
+import com.renatinha.fleetmanagement.dto.Error;
+import com.renatinha.fleetmanagement.dto.LastTrajectory;
 import com.renatinha.fleetmanagement.entities.Taxi;
 import com.renatinha.fleetmanagement.entities.Trajectory;
 import com.renatinha.fleetmanagement.responses.*;
