@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-//    mockmvc testa controlador
+//   mockmvc testa controlador
 //   foca apenas na camada web e não inicia o contexto completo da aplicação, tornando os testes mais rápidos
 @WebMvcTest(TaxiController.class)
 class TaxiControllerTest {
@@ -67,8 +67,7 @@ class TaxiControllerTest {
         Trajectory trajectoryMock = new Trajectory();
         Taxi taxiMock = new Taxi();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-        LocalDateTime date = LocalDateTime.parse("2008-02-02T14:22:40", formatter);
+        LocalDateTime date = LocalDateTime.parse("2008-02-02T14:22:40", DateTimeFormatter.ISO_DATE_TIME);
 
         taxiMock.setId(6418);
         trajectoryMock.setTaxi(taxiMock);
@@ -97,12 +96,11 @@ class TaxiControllerTest {
     public void deveraRetornarUltimaTrajetoriaDeCadaTaxi() throws Exception {
         LastTrajectory lastTrajectory = new LastTrajectory();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-        LocalDateTime date = LocalDateTime.parse("2008-02-02T14:22:40", formatter);
+        LocalDateTime date = LocalDateTime.parse("2008-02-02T14:22:40", DateTimeFormatter.ISO_DATE_TIME);
 
         lastTrajectory.setTaxiId(3859);
         lastTrajectory.setPlate("GHGH-1458");
-        lastTrajectory.setDate("date");
+        lastTrajectory.setDate(date);
         lastTrajectory.setLatitude(116.30508);
         lastTrajectory.setLongitude(39.96525);
 
