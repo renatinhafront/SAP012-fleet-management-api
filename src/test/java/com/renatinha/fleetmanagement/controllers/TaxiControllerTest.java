@@ -25,18 +25,19 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-//    mockmvc
+//    mockmvc testa controlador
+//   foca apenas na camada web e não inicia o contexto completo da aplicação, tornando os testes mais rápidos
 @WebMvcTest(TaxiController.class)
 class TaxiControllerTest {
+
+    @Autowired
+    MockMvc mockMvc;
 
     @MockBean
     private TaxiService taxiService;
 
     @MockBean
     private TrajectoryService trajectoryService;
-
-    @Autowired
-    MockMvc mockMvc;
 
     @Test
     @DisplayName("Deve retornar uma lista de todos os táxis")
@@ -45,6 +46,9 @@ class TaxiControllerTest {
         taxi.setId(3859);
         taxi.setPlate("GPGM-7365");
 
+        // quando eu chamar o service com metodo que busca todos os taxis quero que retorne uma nova pagina de taxi
+        // com o taxi mockado
+        // any(Pageable.class) qualquer coisa que estiver no parametro
         when(taxiService.getAllTaxis(any(Pageable.class))).thenReturn(new PageImpl<>(List.of(taxi)));
         // espero que retorne
         mockMvc.perform(get("/taxis"))
