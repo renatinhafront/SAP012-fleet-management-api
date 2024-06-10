@@ -31,10 +31,12 @@ public class TrajectoryServiceTest {
 
     @Test
     public void testGetAllTaxis() {
+        //arrange - prepara
         Taxi taxi = new Taxi();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-        LocalDateTime date = LocalDateTime.parse("2008-02-02T14:22:40", formatter);
+        //converte o texto com a data em um obj localdateTime
+        // no padrão de formato iso 8601
+        LocalDateTime date = LocalDateTime.parse("2008-02-02T14:22:40", DateTimeFormatter.ISO_DATE_TIME);
 
         Trajectory trajectory = new Trajectory();
         trajectory.setTaxi(taxi);
@@ -43,9 +45,15 @@ public class TrajectoryServiceTest {
         trajectory.setLongitude(567.6789);
         trajectory.setLatitude(123.9876);
 
+        //act - ação
+        //quando trajectoryRespository.buscar todos o taxis por id entre a data (parametros qualquer um)
         when(trajectoryRepository.findAllByTaxiIdAndDateBetween(any(), any(), any(), any()))
+                //quero que retorne uma nova pag com a lista de trajetoria
                 .thenReturn(new PageImpl<>(List.of(trajectory)));
 
+
+        //assert - afirmação
+        //pagina coma lista de trajetorias
         Page<Trajectory> pages = trajectoryService.getTrajectoriesByTaxiId(
                 taxi.getId(),
                 LocalDateTime.now(),

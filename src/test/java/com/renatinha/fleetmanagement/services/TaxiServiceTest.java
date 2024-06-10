@@ -14,11 +14,15 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+// JUnit framework para teste unit
+// extensão com JUnit
 @ExtendWith(SpringExtension.class)
 public class TaxiServiceTest {
 
@@ -32,6 +36,7 @@ public class TaxiServiceTest {
     @Mock
     private LastTrajectoryRepository lastTrajectoryRepository;
 
+    // método a ser testado sendo que ele seja público, sem retorno de argumentos e que seu nome tenha o prefixo test
     @Test
     public void testGetAllTaxis() {
         Taxi taxi = new Taxi();
@@ -53,9 +58,12 @@ public class TaxiServiceTest {
     @Test
     public void testGetAllLastTrajectory() {
         LastTrajectory lastTrajectory = new LastTrajectory();
+
+        LocalDateTime date = LocalDateTime.parse("2008-02-02T14:22:40", DateTimeFormatter.ISO_DATE_TIME);
+
         lastTrajectory.setLatitude(321.3455);
         lastTrajectory.setLongitude(123.456);
-        lastTrajectory.setDate("2008-02-02T14:22:40");
+        lastTrajectory.setDate(date);
         lastTrajectory.setTaxiId(45);
         lastTrajectory.setPlate("HLBO-2375");
 
@@ -67,7 +75,7 @@ public class TaxiServiceTest {
         Assertions.assertEquals(pages.getTotalPages(), 1);
         Assertions.assertEquals(pages.getContent().getFirst().getPlate(), "HLBO-2375");
         Assertions.assertEquals(pages.getContent().getFirst().getTaxiId(), 45);
-        Assertions.assertEquals(pages.getContent().getFirst().getDate(),"2008-02-02T14:22:40");
+        Assertions.assertEquals(pages.getContent().getFirst().getDate(), date);
         Assertions.assertEquals(pages.getContent().getFirst().getLongitude(), 123.456);
         Assertions.assertEquals(pages.getContent().getFirst().getLatitude(),321.3455);
 
